@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "mpicxx",
+            "args": [
+                "-o",
+                "${fileBasenameNoExtension}",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "compile and run",
+            "type": "shell",
+            // for ubuntu
+            // "command": "mpicxx -o ${fileBasenameNoExtension} ${file} && mpiexec -np 4 ./${fileBasenameNoExtension}",
+            // for mac
+            "command": "mpicxx -o ${fileBasenameNoExtension} ${file} && mpirun -np 1 ./${fileBasenameNoExtension}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
